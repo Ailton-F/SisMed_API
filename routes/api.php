@@ -15,5 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function (Request $request) {
-    return $request->user();
+    return response()->json(['Message'=>'Connection successfully']);
 });
+
+Route::prefix('users')->group(base_path('routes/usersRoutes.php'));
+Route::prefix('agendas')->group(base_path('routes/agendasRoutes.php'));

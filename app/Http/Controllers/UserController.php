@@ -101,7 +101,7 @@ class UserController extends Controller
      *             @OA\Property(property="email", type="string", example="teste@gmail.com"),
      *             @OA\Property(property="matricula", type="string", example="20150001110040"),
      *             @OA\Property(property="funcao", type="string", example="Aluno"),
-     *             @OA\Property(property="tipo", type="string", example="A")
+     *             @OA\Property(property="tipo", type="string", example="PA")
      *         )
      *     ),
      *     @OA\Response(response="201", description="User created successfully"),
@@ -136,7 +136,7 @@ class UserController extends Controller
      *             @OA\Property(property="email", type="string", example="teste@gmail.com"),
      *             @OA\Property(property="matricula", type="string", example="20150001110040"),
      *             @OA\Property(property="funcao", type="string", example="Aluno"),
-     *             @OA\Property(property="tipo", type="string", example="A")
+     *             @OA\Property(property="tipo", type="string", example="PA")
      *         )
      *     ),
      *     @OA\Response(response="200", description="User updated successfully"),
