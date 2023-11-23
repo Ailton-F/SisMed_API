@@ -25,11 +25,11 @@ class UserController extends Controller
      *     )
      * )
      *
-     * @return User
+     * @return Collection
      */
-    public function list(): User
+    public function list(): Collection
     {
-        return User::all();
+        return User::all()->load('agenda');
     }
 
 

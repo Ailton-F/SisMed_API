@@ -120,7 +120,7 @@ class AgendaController extends Controller
      *         @OA\JsonContent(
      *             @OA\Property(property="user_id", type="integer", example="1"),
      *             @OA\Property(property="observacao", type="string", example="Observação a respeito da data cadastrada"),
-     *             @OA\Property(property="dt_hr", type="string", example="2000-01-01 00:00:00")
+     *             @OA\Property(property="dt_hr", type="string", example="2022-05-08 14:30:45")
      *         )
      *     ),
      *     @OA\Response(response="200", description="Agenda updated successfully"),
