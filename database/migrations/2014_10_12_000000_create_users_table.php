@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('matricula');
             $table->string('funcao');
+            $table->string('suap_last_token')->nullable();
             $table->enum('tipo', config('enum.tipos'));
             $table->rememberToken();
             $table->timestamps();
