@@ -1,0 +1,439 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "SisMed API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/agendas/": {
+            "get": {
+                "tags": [
+                    "Agenda"
+                ],
+                "summary": "Listar agendas",
+                "operationId": "693244cea082102b56e06bc3965e0586",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/agendas/paginated": {
+            "get": {
+                "tags": [
+                    "Agenda"
+                ],
+                "summary": "Paginação de Agenda",
+                "operationId": "9916e4e032b2534ce37a3dd8e3648c3b",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/agendas/{id}": {
+            "get": {
+                "tags": [
+                    "Agenda"
+                ],
+                "summary": "Procurar por agenda específica",
+                "operationId": "5f9d6f12cb689b3975ae33dbfcf79716",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Agenda ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Agenda not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Agenda"
+                ],
+                "summary": "Update Agenda by ID",
+                "operationId": "93ffe7ff01ffc8df821793b2eeb3195f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Agenda ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "observacao": {
+                                        "type": "string",
+                                        "example": "Observação a respeito da data cadastrada"
+                                    },
+                                    "dt_hr": {
+                                        "type": "string",
+                                        "example": "2000-01-01 00:00:00"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Agenda updated successfully"
+                    },
+                    "404": {
+                        "description": "Agenda not found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Agenda"
+                ],
+                "summary": "Deleta Agenda",
+                "operationId": "87688dc16b401c95cf5c882f1c4a160c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Agenda ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Agenda deleted successfully"
+                    },
+                    "404": {
+                        "description": "Agenda not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/agendas": {
+            "post": {
+                "tags": [
+                    "Agenda"
+                ],
+                "summary": "Cria uma nova agenda",
+                "operationId": "e6d9f074dcfc6b5dbbac06799ec77c89",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "observacao": {
+                                        "type": "string",
+                                        "example": "Observação a respeito da data cadastrada"
+                                    },
+                                    "dt_hr": {
+                                        "type": "string",
+                                        "example": "2000-01-01 00:00:00"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Agenda created successfully"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/users/": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all users",
+                "operationId": "2abda37a3e4282241bf22733b063d9a5",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/users/paginated": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get paginated users",
+                "operationId": "dfad1739e0885a47037bdf7ecf6b0c26",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user by ID",
+                "operationId": "139a70bb72b45d20694feafc80fc1949",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update User",
+                "operationId": "cc2d319f493e1b9ce923db8c3d954b2d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "teste"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "teste@gmail.com"
+                                    },
+                                    "matricula": {
+                                        "type": "string",
+                                        "example": "20150001110040"
+                                    },
+                                    "funcao": {
+                                        "type": "string",
+                                        "example": "Aluno"
+                                    },
+                                    "tipo": {
+                                        "type": "string",
+                                        "example": "A"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User updated successfully"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete user by ID",
+                "operationId": "fa56cffde745d3f152f95cbacd936c0b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": "2"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "User deleted successfully"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/users": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Create a new user",
+                "operationId": "cd5b7f6094357054fd47d26c639d5a20",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "teste"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "teste@gmail.com"
+                                    },
+                                    "matricula": {
+                                        "type": "string",
+                                        "example": "20150001110040"
+                                    },
+                                    "funcao": {
+                                        "type": "string",
+                                        "example": "Aluno"
+                                    },
+                                    "tipo": {
+                                        "type": "string",
+                                        "example": "A"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created successfully"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    }
+}

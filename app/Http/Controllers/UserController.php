@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-
     /**
      * @OA\Get(
      *     path="/api/users/",
@@ -36,22 +35,19 @@ class UserController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/users/",
+     *     path="/api/users/paginated",
      *     tags={"Users"},
      *     security={{"bearerAuth": {}}},
      *     summary="Get paginated users",
      *     @OA\Response(
      *         response="200",
      *         description="OK"
-     *     ),
-     *     @OA\Response(
-     *          response="403",
-     *          description="Unauthorized"
-     *      )
+     *     )
      * )
      *
      * @return LengthAwarePaginator
      */
+    
     public function paginated(): LengthAwarePaginator
     {
         return User::all()->paginate(10, ['*'], 'page');
@@ -101,12 +97,11 @@ class UserController extends Controller
      *     security={{"bearerAuth": {}}},
      *     @OA\RequestBody(
      *         @OA\JsonContent(
-     *             @OA\Property(property="clinic_id", type="integer", example="1"),
-     *             @OA\Property(property="cpf", type="string", example="11111111111"),
-     *             @OA\Property(property="username", type="string", example="teste"),
+     *             @OA\Property(property="nome", type="string", example="teste"),
      *             @OA\Property(property="email", type="string", example="teste@gmail.com"),
-     *             @OA\Property(property="password", type="string", example="12345"),
-     *             @OA\Property(property="type", type="string", example="P")
+     *             @OA\Property(property="matricula", type="string", example="20150001110040"),
+     *             @OA\Property(property="funcao", type="string", example="Aluno"),
+     *             @OA\Property(property="tipo", type="string", example="A")
      *         )
      *     ),
      *     @OA\Response(response="201", description="User created successfully"),
@@ -119,8 +114,6 @@ class UserController extends Controller
     public function add(UserRequest $req): User
     {
         $data = $req->all();
-        $data['password'] = bcrypt($req->password);
-
         return User::create($data);
     }
 
@@ -128,7 +121,7 @@ class UserController extends Controller
      * @OA\Put(
      *     path="/api/users/{id}",
      *     tags={"Users"},
-     *     summary="Update user by ID",
+     *     summary="Update User",
      *     security={{"bearerAuth": {}}},
      *     @OA\Parameter(
      *         name="id",
@@ -139,11 +132,11 @@ class UserController extends Controller
      *     ),
      *     @OA\RequestBody(
      *         @OA\JsonContent(
-     *             @OA\Property(property="clinic_id", type="integer", example="1"),
-     *             @OA\Property(property="cpf", type="string", example="11111111111"),
-     *             @OA\Property(property="username", type="string", example="teste2"),
-     *             @OA\Property(property="email", type="string", example="teste2@gmail.com"),
-     *             @OA\Property(property="admin", type="integer", example="1")
+     *             @OA\Property(property="nome", type="string", example="teste"),
+     *             @OA\Property(property="email", type="string", example="teste@gmail.com"),
+     *             @OA\Property(property="matricula", type="string", example="20150001110040"),
+     *             @OA\Property(property="funcao", type="string", example="Aluno"),
+     *             @OA\Property(property="tipo", type="string", example="A")
      *         )
      *     ),
      *     @OA\Response(response="200", description="User updated successfully"),
@@ -159,7 +152,7 @@ class UserController extends Controller
     public function edit(Request $req, int $id): JsonResponse
     {
         $user = auth()->user();
-        if (!$user->admin and $user->id != $id) {
+        if ($user->id != $id) {
             return response()->json(
                 ['error' => 'Unauthorized'],
                 403);
@@ -167,9 +160,7 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
         $data = $req->all();
-        if (isset($data['password'])) {
-            $data['password'] = bcrypt($req->password);
-        }
+
         $user->update($data);
         return $user;
     }

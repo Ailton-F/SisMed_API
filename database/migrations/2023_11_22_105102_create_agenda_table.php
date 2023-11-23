@@ -15,7 +15,8 @@ return new class extends Migration
         Schema::create('agenda', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
-            $table->dateTime('observacao')->nullable();
+            $table->dateTime('dt_hr');
+            $table->string('observacao')->nullable();
             $table->timestamps();
         });
     }
